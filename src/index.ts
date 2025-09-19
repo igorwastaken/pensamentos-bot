@@ -2,7 +2,7 @@ import { HmacSHA1, enc } from 'crypto-js';
 import OAuth from 'oauth-1.0a';
 
 export default {
-    async fetch(request, env, ctx) {
+    async scheduled(request, env, ctx) {
         const oauth = new OAuth({
             consumer: { key: env.TWITTER_API_KEY, secret: env.TWITTER_API_SECRET },
             signature_method: 'HMAC-SHA1',
@@ -54,10 +54,10 @@ export default {
         if (!tweetResponse.ok) {
             const err = await tweetResponse.text();
             console.error("Erro ao postar no X:", err);
-            return new Response('Erro ao postar no X: ' + err)
+            new Response('Erro ao postar no X: ' + err)
         } else {
             console.log("Tweet postado:", thought);
-            return new Response('Tweet postado: ' + thought);
+            new Response('Tweet postado: ' + thought);
         }
         // return new Response("Done.");
     },
