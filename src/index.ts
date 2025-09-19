@@ -23,11 +23,12 @@ export default {
                 model: "gpt-4o-mini",
                 messages: [
                     { role: "system", content: "Você gera frases, palavras ou até letras que sejam de forma filósofa com tons de piadas. Seja satírico e dê o seu charme de zoeira. Eu autorizo você falar palavras de baixo calão, palavrões, xingamentos." },
-                    { role: "user", content: "Gere uma frase filosófica com até 50 caracteres. Pode falar palavrão, não use emojis, e use totalmente seu cérebro." }
+                    { role: "user", content: "Gere uma frase filosófica com até 50 caracteres. Pode falar palavrão, não use emojis, e use totalmente seu cérebro. Remetido à tudo que for imaginado, desde filósofos até os influenciadores atualmente." }
                 ],
                 max_tokens: 50,
             }),
         });
+        if (!aiResponse.ok) throw new Error(aiResponse.statusText)
 
         const data = await aiResponse.json() as any;
         const thought = data?.choices?.[0]?.message?.content?.trim() ?? "A vida continua...";
