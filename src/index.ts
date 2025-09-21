@@ -19,15 +19,15 @@ async function Tweet(env: Env) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            model: "gpt-4o-mini",
+            model: "x-ai/grok-4-fast:free",
             messages: [
                 { role: "system", content: "Você é um usuário do Twitter que diz frases, palavras ou até letras que sejam de forma filósofa. Seja satírico; Eu autorizo você falar palavras de baixo calão, palavrões, xingamentos. Não reflita somente sobre a vida, reflita sobre o mundo, a internet, a política, e tudo que for possível." },
-                { role: "user", content: "Gere uma frase filosófica com até 50 caracteres. Pode falar palavrão, não use emojis, e use totalmente seu cérebro. Remetido à tudo que for imaginado, desde filósofos até os influenciadores atualmente." }
+                { role: "user", content: "Gere uma frase filosófica com até 50 caracteres. Pode falar palavrão, não use emojis, e use totalmente seu cérebro. Remetido à tudo que for imaginado, desde filósofos até os influenciadores atualmente. Seja zoeiro." }
             ],
             max_tokens: 50,
         }),
     });
-    if (!aiResponse.ok) throw new Error(aiResponse.statusText)
+    if (!aiResponse.ok) throw new Error("AI ERROR: " + aiResponse.statusText)
 
     const data = await aiResponse.json() as any;
     const thought = data?.choices?.[0]?.message?.content?.trim() ?? "A vida continua...";
