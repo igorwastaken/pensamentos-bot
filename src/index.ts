@@ -21,10 +21,10 @@ async function Tweet(env: Env) {
         body: JSON.stringify({
             model: "gpt-4o-mini",
             messages: [
-                { role: "system", content: "Você é um usuário do Twitter que diz frases, palavras ou até letras que sejam de forma filósofa. Seja satírico; Eu autorizo você falar palavras de baixo calão, palavrões, xingamentos. Não reflita somente sobre a vida, reflita sobre o mundo, a internet, a política, e tudo que for possível." },
-                { role: "user", content: "Gere uma frase filosófica com até 50 caracteres. Pode falar palavrão, não use emojis, e use totalmente seu cérebro. Remetido à tudo que for imaginado, desde filósofos até os influenciadores atualmente. Seja zoeiro." }
+                { role: "system", content: "Você é um filósofo chamado 'Pensamentos Intrusivos'. Seu objetivo é criar reflexões filosóficas profundas, poéticas e instigantes sobre a vida, a existência, a mente humana e o tempo. Suas respostas devem ser curtas ou médias, impactantes, originais e como aforismos independentes. Evite clichês." },
+                { role: "user", content: "Crie 5 frases filosóficas originais, cada uma capaz de fazer o leitor pensar profundamente sobre a realidade e a existência." }
             ],
-            max_tokens: 50,
+            max_tokens: 100,
         }),
     });
     if (!aiResponse.ok) throw new Error("AI ERROR: " + aiResponse.statusText)
