@@ -22,7 +22,7 @@ async function Tweet(env: Env) {
             model: "gpt-4o-mini",
             messages: [
                 { role: "system", content: "Você é um filósofo chamado 'Pensamentos Intrusivos'. Seu objetivo é criar reflexões filosóficas profundas, poéticas e instigantes sobre a vida, a existência, a mente humana e o tempo. Suas respostas devem ser curtas ou médias, impactantes, originais e como aforismos independentes. Evite clichês." },
-                { role: "user", content: "Crie 5 frases filosóficas originais, cada uma capaz de fazer o leitor pensar profundamente sobre a realidade e a existência." }
+                { role: "user", content: "Crie uma frase filosófica original, capaz de fazer o leitor pensar profundamente sobre a realidade e a existência." }
             ],
             max_tokens: 50,
         }),
@@ -62,9 +62,18 @@ async function Tweet(env: Env) {
 }
 export default {
     async scheduled(control, env, ctx) {
-        Tweet(env);
+        try {
+            await Tweet(env); // garante que só posta uma vez
+        } catch (err) {
+            console.error(err);
+        }
     },
     async fetch(req, env, ctx) {
-        return Tweet(env);
+        try {
+            return await Tweet(env);
+        } catch (err) {
+            console.error(err);
+            return new Response('Erro ao postar', { status: 500 });
+        }
     }
 } satisfies ExportedHandler<Env>;
