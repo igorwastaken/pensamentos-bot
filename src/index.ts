@@ -69,6 +69,7 @@ export default {
         }
     },
     async fetch(req, env, ctx) {
+        if(req.method !== "GET") return new Response('Need to be GET');
         try {
             return await Tweet(env);
         } catch (err) {
