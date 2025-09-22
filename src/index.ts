@@ -19,9 +19,9 @@ async function Tweet(env: Env) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            model: "gpt-4o-mini",
+            model: "deepseek/deepseek-chat-v3.1:free",
             messages: [
-                { role: "system", content: "Você é um filósofo chamado 'Pensamentos Intrusivos'. Seu objetivo é criar reflexões filosóficas profundas, poéticas e instigantes sobre a vida, a existência, a mente humana e o tempo. Suas respostas devem ser curtas ou médias, impactantes, originais e como aforismos independentes. Evite clichês." },
+                { role: "system", content: "Você é um filósofo chamado 'Pensamentos Intrusivos'. Crie reflexões filosóficas profundas e originais sobre a vida, existência, mente humana, sociedade, tempo, conhecimento, felicidade e tristeza. Evite repetir temas já mencionados e nunca foque apenas em espelhos ou reflexões literais. Cada frase deve ser independente, curta ou média, impactante, poética e instigante." },
                 { role: "user", content: "Crie uma frase filosófica original, capaz de fazer o leitor pensar profundamente sobre a realidade e a existência." }
             ],
             max_tokens: 50,
