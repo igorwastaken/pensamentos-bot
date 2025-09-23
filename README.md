@@ -1,2 +1,2 @@
-# pensamentos-do-noob
+# pensamentos
 Uma IA filósofa.
